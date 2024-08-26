@@ -23,5 +23,9 @@
         font-weight: 400;
         font-style: normal;
         font-size: 50px;    
+}
 
-      }
+/* .filer{
+        display: none;
+        z-index: -1;
+} */
