@@ -4,7 +4,15 @@ import { MdUploadFile } from "react-icons/md";
 const Toggler = () => {
     const [text, setText] = useState(true);
     const [uploaded, setUploaded] = useState(false);
-
+    const [filename, setfileName] = useState("");
+    const fileHandler = (e) =>{
+        const file = document.getElementById('files').files[0];
+        const filename = file.name;
+        const filesize = file.size;
+        setfileName(filename);
+        setUploaded(true);
+        
+    }
     return (
         <div>
             <button onClick={()=>{setText(true)}} className="btn">Text</button>
@@ -15,20 +23,20 @@ const Toggler = () => {
             <br /><button className="btn">Generate</button>
             </div>
             :
-            <form >
+            
             <div className='file-uploader'>
                 <div className='flex flex-col items-center relative'>
-                <input type="file" className="filer z-50 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 size-80" id="" />
-                <div className='flex flex-col justify-center items-center w-1/2 p-20 my-10 border-2 border-dashed border-black bg-[#D1E9F6] relative'>
+                <input type="file" onChange={fileHandler} className="filer z-50 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 size-80" id='files' />
+                <div className='flex flex-col justify-center items-center w-1/2 p-20 my-10 border-2 border-dashed border-blue-600 bg-[#D1E9F6] relative'>
                     <MdUploadFile className='text-6xl animate-pulse'></MdUploadFile><br />
                     {
-                        !uploaded? <p>Upload Your Document Here</p> : <p>Name of the file</p>
+                        !uploaded? <p>Drag & Drop or Upload Your Document Here</p> : <p>{filename}</p>
                     }
                 </div>
                 </div>
-                <input className='btn' type="submit" value="Upload" />
+                <button className="btn">Upload</button>
                 
-            </div></form>}
+            </div>}
 
             
         </div>
