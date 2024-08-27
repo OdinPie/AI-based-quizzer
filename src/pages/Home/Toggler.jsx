@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { MdUploadFile } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
 
 const Toggler = () => {
     const [text, setText] = useState(true);
     const [uploaded, setUploaded] = useState(false);
     const [filename, setfileName] = useState("");
     const [filesize, setfileSize] = useState(0);
+    const navigate = useNavigate();
     const fileHandler = () =>{
         const file = document.getElementById('files').files[0];
         console.log("in fileHandler : ",file);
@@ -33,6 +35,7 @@ const Toggler = () => {
         .then(res => res.json())
         .then(success => console.log(success))
         .catch(error => console.log(error))
+        navigate('/quiz-page');
     }
 
     const handleText = () =>{
@@ -53,10 +56,12 @@ const Toggler = () => {
             .then(res=> res.json())
             .then(data=>console.log(data))
             .catch(error=>console.log(error))
+            navigate('/quiz-page');
         }
         else{
             alert('Paste atleast 500 words')
         }
+
     }
 
     return (
