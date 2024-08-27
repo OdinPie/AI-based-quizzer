@@ -25,7 +25,15 @@
         font-size: 50px;    
 }
 
-/* .filer{
-        display: none;
-        z-index: -1;
-} */
+
+li.q{
+        padding: 15px;
+        border-radius: 10px;
+        background-color: #D1E9F6;
+        margin: 20px;
+        cursor: pointer;
+}
+
+li.q:hover {
+        background-color: #bdd8e7;
+}
