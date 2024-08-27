@@ -8,6 +8,8 @@ const Toggler = () => {
     const [filesize, setfileSize] = useState(0);
     const fileHandler = () =>{
         const file = document.getElementById('files').files[0];
+        console.log("in fileHandler : ",file);
+        
         const filename = file.name;
         const filesize = file.size;
         setfileName(filename);
@@ -17,21 +19,44 @@ const Toggler = () => {
 
     const uploadFile = () =>{
         const file = document.getElementById('files').files[0];
-        const data = {file, filename, filesize};
-
+        const formdata = new FormData();
+        formdata.append("file",file);
+        formdata.append("filename",file.name);
+        formdata.append("filesize",file.size);
+        const data = {filedata : "donnc"};
+        // console.log(file);
+        
         fetch('http://localhost:5000/post-file',{
             method: "POST",
-            headers: {
-                "Content-Type" : "application/json"
-            },
-            body: data
-        }).then(
-            res => res.json()
-        ).then(
-            success => console.log(success)  
-        ).catch(
-            error => console.log(error)  
-        )
+            body: formdata
+        })
+        .then(res => res.json())
+        .then(success => console.log(success))
+        .catch(error => console.log(error))
+    }
+
+    const handleText = () =>{
+        const text  = document.getElementById('text-area').value;
+        const data = {text};
+        // console.log(data);
+        const wordCount = text.split(" ").length;
+        
+        if(wordCount >= 500){
+            fetch("http://localhost:5000/post-text",{
+                method: "POST",
+                headers: {
+                    "content-type" : "application/json"
+                },
+                
+                body: JSON.stringify(data)
+            })
+            .then(res=> res.json())
+            .then(data=>console.log(data))
+            .catch(error=>console.log(error))
+        }
+        else{
+            alert('Paste atleast 500 words')
+        }
     }
 
     return (
@@ -40,11 +65,10 @@ const Toggler = () => {
             <button onClick={()=>{setText(false)}} className="btn">Document</button><br />
 
             {text ? <div className='text-area'>
-            <textarea className="textarea textarea-warning w-1/2 m-5" placeholder="Paste Your Text here to generate quiz ..."></textarea>
-            <br /><button className="btn">Generate</button>
+            <textarea className="textarea textarea-warning w-1/2 m-5" id='text-area' placeholder="Paste Your Text here to generate quiz ..."></textarea>
+            <br /><button onClick={handleText} className="btn">Generate</button>
             </div>
             :
-            
             <div className='file-uploader'>
                 <div className='flex flex-col items-center relative'>
                 <input type="file" onChange={fileHandler} className="filer z-50 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 size-80" id='files' />
