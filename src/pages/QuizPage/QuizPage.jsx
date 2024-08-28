@@ -41,6 +41,12 @@ const QuizPage = () => {
         setIndex(++index);
         setQuestion(data[index]);
         setLock(false);
+        setResult(false);
+        setCorrect(true);
+        const options = document.querySelectorAll('.q');
+        for(let i=0; i<options.length; i++){
+            options[i].style.backgroundColor = '#D1E9F6';
+        }
     }
 
     return (
