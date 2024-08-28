@@ -10,12 +10,14 @@ const QuizPage = () => {
     let [result, setResult] = useState(false);
     let [correct, setCorrect] = useState(true);
     let [lock, setLock] = useState(false);
+    let [progress, setProgress] = useState(0);
     useEffect(()=>{
         fetch('http://localhost:5000/questions')
         .then(res => res.json())
         .then(data => {
             setData(data);
             setQuestion(data[index]);
+            setProgress(1/data.length);
         })
     },[])
 
@@ -43,6 +45,8 @@ const QuizPage = () => {
         setLock(false);
         setResult(false);
         setCorrect(true);
+        let updateProgress = progress+(1/data.length);
+        setProgress(updateProgress);
         const options = document.querySelectorAll('.q');
         for(let i=0; i<options.length; i++){
             options[i].style.backgroundColor = '#D1E9F6';
