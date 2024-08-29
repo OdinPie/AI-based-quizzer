@@ -3,23 +3,28 @@ import Quiz from './Quiz';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+import { useLocation } from 'react-router-dom';
 const QuizPage = () => {
-    let [data, setData] = useState();
+    const location = useLocation();
+    let [data, setData] = useState(location.state);
     let [index, setIndex] = useState(0);
-    let [question, setQuestion] = useState({});
+    let [question, setQuestion] = useState(data[index]);
     let [result, setResult] = useState(false);
     let [correct, setCorrect] = useState(true);
     let [lock, setLock] = useState(false);
-    let [progress, setProgress] = useState(0);
-    useEffect(()=>{
-        fetch('http://localhost:5000/questions')
-        .then(res => res.json())
-        .then(data => {
-            setData(data);
-            setQuestion(data[index]);
-            setProgress(1/data.length);
-        })
-    },[])
+    let [progress, setProgress] = useState(1/data.length);
+    
+    // console.log(location.state);
+    
+    // useEffect(()=>{
+    //     fetch('http://localhost:5000/questions')
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         setData(data);
+    //         setQuestion(data[index]);
+    //         setProgress(1/data.length);
+    //     })
+    // },[])
 
     const checkAnswer = (selected) =>{
         if(!lock){
