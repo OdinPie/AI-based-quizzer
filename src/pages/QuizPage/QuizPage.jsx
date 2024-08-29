@@ -54,7 +54,8 @@ const QuizPage = () => {
             {!data? 
             <div className='flex flex-col items-center py-20'>
                 <img className='w-1/4 animate-pulse' src="/src/assets/loader-01.png" alt="" />
-                <h1 className='text-center heading'>Please Wait ...</h1>
+                <h1 className='text-center heading'>Response Corrupted. PLease Try Again</h1>
+                <Link to={'/'} className='btn'>Back to Home</Link>
             </div> 
             :
             <div className='pt-32 paragraph'>
