@@ -28,14 +28,17 @@ const Toggler = () => {
         const data = {filedata : "donnc"};
         // console.log(file);
         
-        fetch('http://localhost:5000/post-file',{
+        fetch('http://localhost:5000/post-constent',{
             method: "POST",
             body: formdata
         })
         .then(res => res.json())
-        .then(success => console.log(success))
+        .then(data => {
+            //console.log(data);
+            navigate('/quiz-page',{state: data});
+        })
         .catch(error => console.log(error))
-        navigate('/quiz-page');
+        
     }
 
     const handleText = () =>{
@@ -45,7 +48,7 @@ const Toggler = () => {
         const wordCount = text.split(" ").length;
         
         if(wordCount >= 500){
-            fetch("http://localhost:5000/post-text",{
+            fetch("http://localhost:5000/post-constent",{
                 method: "POST",
                 headers: {
                     "content-type" : "application/json"
@@ -54,9 +57,13 @@ const Toggler = () => {
                 body: JSON.stringify(data)
             })
             .then(res=> res.json())
-            .then(data=>console.log(data))
+            .then(data=>
+                {//console.log(data);
+                navigate('/quiz-page',{state: data});
+            }
+            )
             .catch(error=>console.log(error))
-            navigate('/quiz-page');
+            
         }
         else{
             alert('Paste atleast 500 words')
