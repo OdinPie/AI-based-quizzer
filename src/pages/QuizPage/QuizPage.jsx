@@ -3,28 +3,19 @@ import Quiz from './Quiz';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+// import { width } from '@fortawesome/free-solid-svg-icons/fa0';
 const QuizPage = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     let [data, setData] = useState(location.state);
     let [index, setIndex] = useState(0);
     let [question, setQuestion] = useState(data[index]);
     let [result, setResult] = useState(false);
     let [correct, setCorrect] = useState(true);
     let [lock, setLock] = useState(false);
-    let [progress, setProgress] = useState(1/data.length);
-    
-    // console.log(location.state);
-    
-    // useEffect(()=>{
-    //     fetch('http://localhost:5000/questions')
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         setData(data);
-    //         setQuestion(data[index]);
-    //         setProgress(1/data.length);
-    //     })
-    // },[])
+    let [progress, setProgress] = useState((1/data.length));
+   
 
     const checkAnswer = (selected) =>{
         if(!lock){
@@ -50,12 +41,19 @@ const QuizPage = () => {
         setLock(false);
         setResult(false);
         setCorrect(true);
-        let updateProgress = progress+(1/data.length);
+        let updateProgress = (progress+(1/data.length));
+        console.log((updateProgress));
+        
         setProgress(updateProgress);
         const options = document.querySelectorAll('.q');
         for(let i=0; i<options.length; i++){
             options[i].style.backgroundColor = '#D1E9F6';
         }
+    }
+
+    const styles = {
+        width: `calc(${progress}*100%)`
+        // width: `80%`
     }
 
     return (
@@ -67,7 +65,14 @@ const QuizPage = () => {
                 <Link to={'/'} className='btn'>Back to Home</Link>
             </div> 
             :
-            <div className='pt-32 paragraph'>
+            <div className='pt-14 paragraph'>
+                <div className='flex items-center justify-center gap-2 mb-5'>
+                <FontAwesomeIcon onClick={()=>{navigate('/')}} icon={faCircleXmark} className='btn btn-circle btn-xs'/>
+                <div className="progress-bar bg-slate-100 w-3/4 h-3 rounded-lg">
+                <div className={`bg-blue-200 rounded-lg h-full`} style={styles}></div>
+                </div>
+                <p className='font-semibold text-slate-500'>{index+1}/{data.length}</p>
+                </div>
                 <div className='max-w-3xl mx-auto '>
                     <h1 className='font-bold text-xl'>{index+1}. {question.question}</h1><br />
                     <ol className='a font-medium'>
