@@ -38,23 +38,23 @@ const QuizPage = () => {
     }
 
     const nextQuestion = () =>{
-        setIndex(++index);
-        setQuestion(data[index]);
-        setLock(false);
-        setResult(false);
-        setCorrect(true);
-        // if(index === data.length-1){
-        //     let updateProgress = 1;
-        // }else{
+        if(index === data.length-1){
+            setProgress(1);
+            setQuestion(0);
+        }else{
+            setIndex(++index);
+            setQuestion(data[index]);
+            setLock(false);
+            setResult(false);
+            setCorrect(true);
             let updateProgress = (progress+(1/data.length));
-        // }
-        // console.log((updateProgress));
-        
-        setProgress(updateProgress);
-        const options = document.querySelectorAll('.q');
-        for(let i=0; i<options.length; i++){
-            options[i].style.backgroundColor = '#D1E9F6';
+            setProgress(updateProgress);
+            const options = document.querySelectorAll('.q');
+            for(let i=0; i<options.length; i++){
+                options[i].style.backgroundColor = '#D1E9F6';
+            }
         }
+        
     }
 
     const styles = {
