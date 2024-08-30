@@ -27,12 +27,8 @@ const QuizPage = () => {
         if(question.answer != selected){
             status = false;
             setCorrect(false);
-            // console.log("wrong!!!")
         }else{
             setScore(++score);
-            
-            // console.log("correct!!!")
-
         }
         }
     }
@@ -120,7 +116,7 @@ const QuizPage = () => {
                     </div>
                 }
                 </div>:
-                <div className='flex flex-col items-center justify-center text-center gap-3'>
+                <div className='result-section flex flex-col items-center justify-center text-center gap-3'>
                     <FontAwesomeIcon icon={faCircleCheck} className='text-7xl' style={{color: "#F1D3CE"}} />
                     <h1 className='heading'>Quiz Completed</h1>
                     <p className='paragraph'>Assessment</p>
