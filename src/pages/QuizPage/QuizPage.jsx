@@ -42,7 +42,7 @@ const QuizPage = () => {
         setResult(false);
         setCorrect(true);
         let updateProgress = (progress+(1/data.length));
-        console.log((updateProgress));
+        // console.log((updateProgress));
         
         setProgress(updateProgress);
         const options = document.querySelectorAll('.q');
@@ -52,8 +52,8 @@ const QuizPage = () => {
     }
 
     const styles = {
-        width: `calc(${progress}*100%)`
-        // width: `80%`
+        width: `calc(${progress}*100%)`,
+        transition: '1s ease-in-out'
     }
 
     return (
@@ -68,8 +68,8 @@ const QuizPage = () => {
             <div className='pt-14 paragraph'>
                 <div className='flex items-center justify-center gap-2 mb-5'>
                 <FontAwesomeIcon onClick={()=>{navigate('/')}} icon={faCircleXmark} className='btn btn-circle btn-xs'/>
-                <div className="progress-bar bg-slate-100 w-3/4 h-3 rounded-lg">
-                <div className={`bg-blue-200 rounded-lg h-full`} style={styles}></div>
+                <div className=" bg-slate-100 w-3/4 h-3 rounded-lg">
+                <div className={`bg-[#F1D3CE] rounded-lg h-full`} style={styles}></div>
                 </div>
                 <p className='font-semibold text-slate-500'>{index+1}/{data.length}</p>
                 </div>
