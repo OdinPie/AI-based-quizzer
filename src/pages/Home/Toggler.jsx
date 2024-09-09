@@ -28,7 +28,7 @@ const Toggler = () => {
         const data = {filedata : "donnc"};
         // console.log(file);
         
-        fetch('http://localhost:5000/post-constent',{
+        fetch('http://52.230.27.168:8000/generate_mcq_from_pdf/',{
             method: "POST",
             body: formdata
         })
@@ -48,7 +48,7 @@ const Toggler = () => {
         const wordCount = text.split(" ").length;
         
         if(wordCount >= 500){
-            fetch("http://localhost:5000/post-constent",{
+            fetch("http://52.230.27.168:8000/generate_mcq/",{
                 method: "POST",
                 headers: {
                     "content-type" : "application/json"
