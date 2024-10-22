@@ -10,7 +10,7 @@ const Toggler = () => {
     const navigate = useNavigate();
     const fileHandler = () =>{
         const file = document.getElementById('files').files[0];
-        console.log("in fileHandler : ",file);
+        // console.log("in fileHandler : ",file);
         
         const filename = file.name;
         const filesize = file.size;
@@ -28,7 +28,7 @@ const Toggler = () => {
         const data = {filedata : "donnc"};
         // console.log(file);
         
-        fetch('http://52.230.27.168:8000/generate_mcq_from_pdf/',{
+        fetch(import.meta.env.VITE_pdfapi,{
             method: "POST",
             body: formdata
         })
@@ -48,7 +48,7 @@ const Toggler = () => {
         const wordCount = text.split(" ").length;
         
         if(wordCount >= 500){
-            fetch("http://52.230.27.168:8000/generate_mcq/",{
+            fetch(import.meta.env.VITE_textapi,{
                 method: "POST",
                 headers: {
                     "content-type" : "application/json"
