@@ -27,7 +27,6 @@ const Toggler = () => {
         formdata.append("filesize",file.size);
         const data = {filedata : "donnc"};
         // console.log(file);
-        console.log(import.meta.env.VITE_pdfapi,import.meta.env.VITE_textapi );
         
         fetch(import.meta.env.VITE_pdfapi,{
             method: "POST",
