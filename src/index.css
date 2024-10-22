@@ -1,3 +1,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.heading{
+        font-family: "DM Serif Display", serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 50px;    
+}
+
+.paragraph{
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        /* font-weight: <weight>; */
+        font-style: normal;
+           
+
+}
+.lobster-regular {
+        font-family: "Lobster", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 50px;    
+}
+
+
+li.q{
+        padding: 15px;
+        border-radius: 10px;
+        background-color: #D1E9F6;
+        margin: 20px;
+        cursor: pointer;
+}
+
+li.q:hover {
+        background-color: #bdd8e7;
+}
+
+.result-section{
+        animation: appear 1s ease-in-out;
+}
+
+@keyframes appear {
+        0%{
+                opacity: 0;
+                transform: translateY(-20px);
+        }
+        100%{
+                opacity: 1;
+                transform: translateY(0);
+        }
+}
+
+
