@@ -32,6 +32,9 @@ jobs:
           api_location: "api" # Api source code path - optional
           output_location: "dist" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
+        env:
+          VITE_textapi : "http://52.230.27.168:8000/generate_mcq"
+          VITE_pdfapi : "http://52.230.27.168:8000/generate_mcq_from_pdf"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
