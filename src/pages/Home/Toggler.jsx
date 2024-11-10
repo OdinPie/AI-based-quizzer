@@ -73,6 +73,7 @@ const Toggler = () => {
 
     return (
         <div>
+            {/* <div id='blob' className="blob"></div> */}
             <button onClick={()=>{setText(true)}} className="btn">Text</button>
             <button onClick={()=>{setText(false)}} className="btn">Document</button><br />
 

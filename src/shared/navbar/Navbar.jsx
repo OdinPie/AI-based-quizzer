@@ -1,60 +1,77 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+    const [expandModal, setexposeModal] = useState(false);
     return (
-        <div className="navbar fixed z-50 backdrop-blur-sm text-[#387F39]">
-        <div className="navbar-start">
-            <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                <svg
+    <div className='fixed top-0 left-0 z-10 w-full h-[94px]'>
+        <div className={expandModal? 'translate-y-[500] duration-1000 relative overflow-hidden bg-indigo-200 h-screen':'-translate-y-[900px] duration-1000 overflow-hidden'}>
+        <div className='flex justify-center gap-10 pt-10'>
+            <div className='flex flex-col w-1/4 justify-between'>
+            <img className='scale-110' src="/src/assets/White_only.png" alt="quizzly-white-logo" />
+            <div className=' bg-white w-1/3 p-10 hover:bg-black hover:text-purple-400 rounded-3xl absolute -bottom-4 -left-2 text-center'>
+                <Link to={"#"}><h1 className='text-xl font-medium'>Register</h1></Link>
+            </div>
+            </div>
+            
+            <div className='text-white'>
+            <div className='text-7xl roboto font-semibold'>
+                <h1 className='hover:translate-x-14 duration-500'>Input Text</h1>
+                <h1 className='hover:translate-x-14 duration-500'>Input Document</h1>
+                <h1 className='hover:translate-x-14 duration-500'>AI Tutorbot</h1>
+                <h1 className='hover:translate-x-14 duration-500'>Instant Feedback</h1>
+            </div>
+            <div className='my-10'>
+            <p>About us</p>
+            <p>Competence center</p>
+            <p>Responsibility</p>
+            <p>Careers</p>
+            <p>Downloads</p>
+            </div>
+            </div>
+           {/* <button className='absolute top-0 right-0' onClick={()=>{setexposeModal(false)}}>
+           <svg
+                className="swap-on fill-white"
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h8m-8 6h16" />
-                </svg>
+                width="72"
+                height="72"
+                viewBox="0 0 512 512">
+                <polygon
+                points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
+            </svg>
+            </button>  */}
+        </div>
+        
+        </div>
+        <div className='flex justify-between absolute top-0 left-0 w-full'>
+            <Link to="/"><img className='w-20 pt-2'src="/src/assets/Blackk_only.png" alt="" /></Link>
+            <div className='flex items-center justify-around bg-black text-white h-[94px] w-1/4 px-12 -m-2 -mr-4 hover:w-1/5 duration-1000 rounded-3xl'>
+                <Link to={"#"}><h1 className='text-xl font-medium'>Login</h1></Link>
+                
+                {!expandModal? <button onClick={()=>{setexposeModal(true)}}><svg
+                    className="swap-off fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 512 512">
+                    <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
+                </svg></button> :
+                <button onClick={()=>{setexposeModal(false)}}>
+                <svg
+                     className="swap-on fill-white"
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="32"
+                     height="32"
+                     viewBox="0 0 512 512">
+                     <polygon
+                     points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
+                 </svg>
+                 </button> }
+            
+
             </div>
-            <ul
-                tabIndex={0}
-                className="menu paragraph menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                <li><a>Item 1</a></li>
-                <li>
-                <a>Parent</a>
-                <ul className="p-2 paragraph">
-                    <li><a>Submenu 1</a></li>
-                    <li><a>Submenu 2</a></li>
-                </ul>
-                </li>
-                <li><a>Item 3</a></li>
-            </ul>
-            </div>
-            <a className="btn btn-ghost text-xl">Quizzly</a>
         </div>
-        <div className="navbar-center hidden lg:flex paragraph">
-            <ul className="menu menu-horizontal px-1">
-            <li><a>Item 1</a></li>
-            <li>
-                <details>
-                <summary>Parent</summary>
-                <ul className="p-2">
-                    <li><a>Submenu 1</a></li>
-                    <li><a>Submenu 2</a></li>
-                </ul>
-                </details>
-            </li>
-            <li><a>Item 3</a></li>
-            </ul>
-        </div>
-        <div className="flex navbar-end gap-2 paragraph">
-            <a className="btn">Plan your Schedule</a>
-            <a className="btn">Login</a>
-        </div>
-        </div>
+    </div>
     );
 };
 
