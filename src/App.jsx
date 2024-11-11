@@ -8,7 +8,7 @@ function App() {
   const [count, setCount] = useState(0)
   const [noshoulder, setnoShoulder] = useState(false);
   const location = useLocation();
-  const noShoulder = location.pathname.includes('/quiz-page');
+  const noShoulder = location.pathname.includes('/quiz-page') || location.pathname.includes('/login') || location.pathname.includes('/register') ;
 
   
   return (

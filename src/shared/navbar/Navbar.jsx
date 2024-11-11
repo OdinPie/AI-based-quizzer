@@ -9,8 +9,8 @@ const Navbar = () => {
         <div className='flex justify-center gap-10 pt-10'>
             <div className='flex flex-col w-1/4 justify-between'>
             <img className='scale-110' src="/src/assets/White_only.png" alt="quizzly-white-logo" />
-            <div className=' bg-white w-1/3 p-10 hover:bg-black hover:text-purple-400 rounded-3xl absolute -bottom-4 -left-2 text-center'>
-                <Link to={"#"}><h1 className='text-xl font-medium'>Register</h1></Link>
+            <div className='bg-white w-1/3 p-10 hover:bg-black hover:text-purple-400 rounded-3xl absolute -bottom-4 -left-2 text-center'>
+                <Link to={"/register"} ><h1 className='text-xl font-medium'>Register</h1></Link>
             </div>
             </div>
             
@@ -46,7 +46,7 @@ const Navbar = () => {
         <div className='flex justify-between absolute top-0 left-0 w-full'>
             <Link to="/"><img className='w-20 pt-2'src="/src/assets/Blackk_only.png" alt="" /></Link>
             <div className='flex items-center justify-around bg-black text-white h-[94px] w-1/4 px-12 -m-2 -mr-4 hover:w-1/5 duration-1000 rounded-3xl'>
-                <Link to={"#"}><h1 className='text-xl font-medium'>Login</h1></Link>
+                <Link to={"/login"}><h1 className='text-xl font-medium'>Login</h1></Link>
                 
                 {!expandModal? <button onClick={()=>{setexposeModal(true)}}><svg
                     className="swap-off fill-current"

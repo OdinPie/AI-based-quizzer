@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body{
-        scroll-behavior: smooth;
+        /* scroll-behavior: smooth; */
         background: #000;
 }
 #blob {
@@ -56,6 +56,11 @@ body{
         font-size: 50px;    
 }
 
+.colorful-text {
+        background: linear-gradient(to bottom right, cyan, rgb(202, 94, 223));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+}
 
 li.q{
         padding: 15px;
