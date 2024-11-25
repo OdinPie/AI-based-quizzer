@@ -7,6 +7,7 @@ const Toggler = () => {
     const [uploaded, setUploaded] = useState(false);
     const [filename, setfileName] = useState("");
     const [filesize, setfileSize] = useState(0);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const fileHandler = () =>{
         const file = document.getElementById('files').files[0];
@@ -20,6 +21,7 @@ const Toggler = () => {
     }
 
     const uploadFile = () =>{
+        setLoading(true);
         const file = document.getElementById('files').files[0];
         const formdata = new FormData();
         formdata.append("file",file);
@@ -35,6 +37,7 @@ const Toggler = () => {
         .then(res => res.json())
         .then(data => {
             //console.log(data);
+            setLoading(false);
             navigate('/quiz-page',{state: data});
         })
         .catch(error => console.log(error))
@@ -48,6 +51,7 @@ const Toggler = () => {
         const wordCount = text.split(" ").length;
         
         if(wordCount >= 500){
+            setLoading(true);
             fetch(import.meta.env.VITE_textapi,{
                 method: "POST",
                 headers: {
@@ -73,20 +77,21 @@ const Toggler = () => {
 
     return (
         <div>
+        {!loading? <div id='toggler'>
             {/* <div id='blob' className="blob"></div> */}
             <button onClick={()=>{setText(true)}} className="btn">Text</button>
             <button onClick={()=>{setText(false)}} className="btn">Document</button><br />
 
             {text ? <div className='text-area'>
-            <textarea className="textarea textarea-warning w-1/2 m-5" id='text-area' placeholder="Paste Your Text here to generate quiz ..."></textarea>
+            <textarea className="textarea textarea-warning h-52 w-1/2 m-5" id='text-area' placeholder="Paste Your Text here to generate quiz ..."></textarea>
             <br /><button onClick={handleText} className="btn">Generate</button>
             </div>
             :
             <div className='file-uploader'>
                 <div className='flex flex-col items-center relative'>
                 <input type="file" onChange={fileHandler} className="filer z-50 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 size-80" id='files' />
-                <div className='flex flex-col justify-center items-center w-1/2 p-20 my-10 rounded-lg border-2 border-dashed border-blue-600 bg-[#D1E9F6] relative'>
-                    <MdUploadFile className='text-6xl animate-pulse'></MdUploadFile><br />
+                <div className='flex flex-col justify-center items-center w-1/2 p-20 my-10 rounded-lg border-2 border-dashed border-white colorful-text relative'>
+                    <MdUploadFile className='text-6xl text-white animate-pulse'></MdUploadFile><br />
                     {
                         !uploaded? <p>Drag & Drop or Upload Your Document Here</p> : <p className=''>{filename}</p>
                     }
@@ -97,6 +102,12 @@ const Toggler = () => {
             </div>}
 
             
+        </div>:
+        <div className='z-50 fixed pt-10 bg-white w-screen h-screen top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center'>
+            <img className='animate-pulse w-1/4' src="/src/assets/loading.png" alt="" /><br />
+            <h1 className='text-center heading'>Please Wait. Question is being Generated...</h1>
+        </div>
+        }
         </div>
     );
 };

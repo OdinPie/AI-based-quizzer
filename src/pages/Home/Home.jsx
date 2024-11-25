@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
     useEffect(()=>{
     var cursor = document.getElementById('blob');
-    console.log(cursor);
+    // console.log(cursor);
     
     document.addEventListener('mousemove', function(e){
     var x = e.clientX;
@@ -62,7 +62,7 @@ const Home = () => {
             <h1 id='welcoming1' className='heading mt-20 mb-7 leading-none text-white'><span className='colorful-text'>QUIZZLY</span> , Revolutionizing Knowledge Testing  with AI-Driven, Inclusive <br /> Quizzing Solutions</h1>
             <p id='welcoming2' className='paragraph w-1/2 text-gray-300'>Quizzly dynamically generates quizzes from any <span className='colorful-text'>document or text</span>, empowering users with <span className='colorful-text'>instant assessments</span> and insights offering support for personalized analytics</p>
             <div className='flex gap-3 mt-5'>
-                <button className="btn rounded-full ">Explore</button>
+                <a href="#toggler" className="btn rounded-full ">Explore</a>
                 <Link to={'/register'}><button className="btn colorful-text outline-8 outline-white text-white rounded-full ">Register</button></Link>
             </div>
             </div>

@@ -78,7 +78,7 @@ const QuizPage = () => {
                 {
                     question? <div>
                         <div className='max-w-3xl mx-auto '>
-                    <h1 className='font-bold text-xl'>{index+1}. {question.question}</h1><br />
+                    <h1 className='font-bold text-blue-300 text-xl'>{index+1}. {question.question}</h1><br />
                     <ol className='a font-medium'>
                         <li onClick={()=>{checkAnswer(1)}} id='1' className='q'>{question.options[0]}</li>
                         <li onClick={()=>{checkAnswer(2)}} id='2' className='q'>{question.options[1]}</li>
@@ -116,7 +116,7 @@ const QuizPage = () => {
                     </div>
                 }
                 </div>:
-                <div className='result-section flex flex-col items-center justify-center text-center gap-3'>
+                <div className='result-section flex flex-col items-center justify-center text-center gap-3 text-white h-screen'>
                     <FontAwesomeIcon icon={faCircleCheck} className='text-7xl' style={{color: "#F1D3CE"}} />
                     <h1 className='heading'>Quiz Completed</h1>
                     <p className='paragraph'>Assessment</p>
@@ -125,7 +125,7 @@ const QuizPage = () => {
                     <button className="btn border-red-400 rounded-full mr-2">Retry</button>
                     <button className="btn bg-[#F1D3CE] rounded-full">Quit</button>
                     </div>
-                    <p><a href='#'className='text-blue-300'>Create a free account</a> to track and review your answers</p>
+                    <p><a href='/register'className='text-blue-300'>Create a free account</a> to track and review your answers</p>
                 </div>
                 }
                 
