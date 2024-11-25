@@ -22,6 +22,7 @@ const Register = () => {
                 <input type="submit" className="btn" value="Register" />
                 <p className="text-lg text-center my-3 colorful-text">Already have an account? <Link className="underline text-salmon" to="/login">Log In</Link> </p>
             </form>
+            <Link to={"/"}><button className='btn'>Home</button></Link>
         </div>
         </div>
         
